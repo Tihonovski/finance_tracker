@@ -11,7 +11,7 @@
 <body class="p-4 pb-20 md:p-6"> <div class="max-w-3xl mx-auto space-y-6">
 
         <header class="flex justify-between items-center pt-2">
-            <h1 class="text-2xl md:text-3xl font-bold">התקציב שלי</h1>
+            <h1 class="text-2xl md:text-3xl font-bold">התנהלות פיננסית</h1>
             <button id="open-modal-button-header" class="primary-button p-2 h-9 w-9 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -39,14 +39,16 @@
                 <button class="segment-button active" data-tab="transactions">תנועות</button>
                 <button class="segment-button" data-tab="budgets">תקציבים</button>
                 <button class="segment-button" data-tab="recurring">קבועים</button>
-                <button class="segment-button" data-tab="settings">הגדרות</button> </div>
+                <button class="segment-button" data-tab="settings">הגדרות</button>
+            </div>
 
             <div id="tab-panels-container" class="mt-4">
                 <div id="tab-transactions-panel" class="tab-panel-content active card">
-                    <div id="transactions-list" class="divide-y divide-gray-200">
-                        <div id="empty-list-message" class="p-6 text-center text-gray-500" style="display: none;"> אין תנועות להצגה. לחץ על '+' למעלה להוספה.
+                    <div id="transactions-list">
+                        <div id="empty-list-message" class="p-6 text-center text-gray-500" style="display: none;">
+                            אין תנועות להצגה. לחץ על '+' למעלה להוספה.
                         </div>
-                    </div>
+                        </div>
                 </div>
 
                 <div id="tab-budgets-panel" class="tab-panel-content">
@@ -74,8 +76,10 @@
     </div> <div id="add-transaction-modal" class="modal">
         <div class="modal-content">
             <button id="modal-close-button" class="modal-close-button">&times;</button>
-            <h2 class="text-xl font-semibold mb-6 text-center">הוספת תנועה חדשה</h2>
+            <h2 id="modal-title" class="text-xl font-semibold mb-6 text-center">הוספת תנועה חדשה</h2>
             <form id="transaction-form" class="space-y-4">
+                 <input type="hidden" id="transaction-id" name="transactionId">
+
                 <div>
                      <label class="form-label">סוג תנועה</label>
                      <div class="flex gap-3">
@@ -139,7 +143,7 @@
                 </div>
 
                 <div class="pt-4">
-                    <button type="submit" class="primary-button w-full">
+                    <button type="submit" id="modal-submit-button" class="primary-button w-full">
                         שמור תנועה
                     </button>
                 </div>
