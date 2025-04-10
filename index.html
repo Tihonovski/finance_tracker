@@ -39,7 +39,7 @@
                 <button class="segment-button active" data-tab="transactions">תנועות</button>
                 <button class="segment-button" data-tab="budgets">תקציבים</button>
                 <button class="segment-button" data-tab="recurring">קבועים</button>
-            </div>
+                <button class="segment-button" data-tab="settings">הגדרות</button> </div>
 
             <div id="tab-panels-container" class="mt-4">
                 <div id="tab-transactions-panel" class="tab-panel-content active card">
@@ -60,6 +60,14 @@
                         מעקב תשלומים קבועים יופיע כאן בהמשך.
                     </div>
                 </div>
+
+                 <div id="tab-settings-panel" class="tab-panel-content">
+                     <div class="card p-6 text-center text-gray-500 space-y-4">
+                         <p>ניהול חשבונות בנק וכרטיסי אשראי יופיע כאן בהמשך.</p>
+                         <p class="text-xs">(כרגע, החשבונות והכרטיסים מוגדרים כברירת מחדל בקוד)</p>
+                    </div>
+                 </div>
+
             </div>
         </section>
 
@@ -81,6 +89,20 @@
                         </label>
                      </div>
                  </div>
+
+                 <div>
+                    <label for="bankAccount" class="form-label">חשבון בנק</label>
+                    <select id="bankAccount" name="bankAccount" class="form-select" required>
+                        <option value="" disabled selected>בחר חשבון...</option>
+                        </select>
+                </div>
+
+                 <div>
+                    <label for="paymentMethod" class="form-label">אמצעי תשלום</label>
+                    <select id="paymentMethod" name="paymentMethod" class="form-select" required disabled>
+                        <option value="" disabled selected>בחר קודם חשבון בנק...</option>
+                        </select>
+                </div>
 
                 <div>
                     <label for="amount" class="form-label">סכום (₪)</label>
@@ -114,11 +136,6 @@
                  <div>
                     <label for="date" class="form-label">תאריך</label>
                     <input type="date" id="date" name="date" class="form-input" required>
-                </div>
-
-                 <div>
-                    <label for="paymentMethod" class="form-label">אמצעי תשלום (אופציונלי)</label>
-                    <input type="text" id="paymentMethod" name="paymentMethod" class="form-input" placeholder="לדוגמה: אשראי ויזה, עובר ושב">
                 </div>
 
                 <div class="pt-4">
