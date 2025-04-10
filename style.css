@@ -1,0 +1,197 @@
+/* Apply Inter font globally */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f8f8; /* Light gray background, common in iOS apps */
+    color: #1d1d1f; /* Apple's typical dark text color */
+    overscroll-behavior-y: none; /* Prevent pull-to-refresh issues on mobile */
+}
+
+/* --- Apple Style Adjustments --- */
+
+/* Cards/Sections */
+.card {
+    background-color: #ffffff;
+    border-radius: 0.75rem; /* 12px */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* Ensure content respects border radius */
+}
+
+/* Buttons */
+.primary-button {
+    background-color: #007aff; /* Apple blue */
+    color: white;
+    padding: 0.625rem 1.25rem; /* 10px 20px */
+    border-radius: 0.5rem; /* 8px */
+    font-weight: 600;
+    font-size: 0.9375rem; /* 15px */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.primary-button:hover, .primary-button:focus {
+    background-color: #005ecb; /* Darker blue */
+}
+.primary-button:disabled {
+    background-color: #d1d1d6; /* Disabled gray */
+    cursor: not-allowed;
+}
+.secondary-button {
+    background-color: #e5e5ea; /* Light gray */
+    color: #007aff; /* Blue text */
+     padding: 0.625rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+ .secondary-button:hover, .secondary-button:focus {
+    background-color: #dcdce0;
+}
+
+/* Forms */
+.form-input, .form-select {
+    width: 100%;
+    padding: 0.75rem 1rem; /* 12px 16px */
+    border: 1px solid #d1d1d6; /* Border gray */
+    border-radius: 0.5rem; /* 8px */
+    background-color: #f2f2f7; /* Input background */
+    font-size: 1rem; /* 16px */
+    color: #1d1d1f;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.form-input:focus, .form-select:focus {
+    outline: none;
+    border-color: #007aff; /* Blue border on focus */
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+}
+.form-label {
+    display: block;
+    font-size: 0.8125rem; /* 13px */
+    font-weight: 500;
+    color: #636366; /* Gray label text */
+    margin-bottom: 0.375rem; /* 6px */
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Dim background */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+.modal-content {
+    background-color: #ffffff;
+    margin: auto;
+    padding: 1.5rem; /* 24px */
+    border-radius: 0.875rem; /* 14px */
+    max-width: 450px; /* Limit width */
+    width: 90%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: relative;
+}
+.modal-close-button {
+    position: absolute;
+    top: 0.75rem; /* 12px */
+    left: 0.75rem; /* Align to the left for RTL */
+    background: #e5e5ea;
+    color: #8e8e93;
+    border: none;
+    border-radius: 50%;
+    width: 1.75rem; /* 28px */
+    height: 1.75rem; /* 28px */
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+.modal-close-button:hover {
+    background-color: #dcdce0;
+    color: #636366;
+}
+
+/* Transaction List Item */
+.transaction-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem; /* 12px 16px */
+    border-bottom: 1px solid #e5e5ea; /* Separator */
+}
+ .transaction-item:last-child {
+    border-bottom: none;
+}
+.transaction-icon {
+    width: 2.5rem; /* 40px */
+    height: 2.5rem; /* 40px */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem; /* me-4 */
+    flex-shrink: 0;
+}
+.transaction-icon svg {
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+    color: white;
+}
+.transaction-details { flex-grow: 1; }
+.transaction-description { font-weight: 500; color: #1d1d1f; }
+.transaction-category { font-size: 0.8125rem; color: #8e8e93; } /* Secondary text color */
+.transaction-amount { font-weight: 500; white-space: nowrap; }
+.transaction-amount.income { color: #34c759; } /* Apple Green */
+.transaction-amount.expense { color: #ff3b30; } /* Apple Red */
+
+/* Segmented Control / Tabs */
+.segmented-control {
+    display: flex;
+    background-color: #e5e5ea; /* Gray background */
+    border-radius: 0.5rem; /* 8px */
+    padding: 2px;
+    overflow: hidden;
+}
+.segment-button {
+    flex: 1;
+    padding: 0.5rem 0.5rem; /* 8px */
+    border: none;
+    background-color: transparent;
+    color: #1d1d1f;
+    font-size: 0.8125rem; /* 13px */
+    font-weight: 600;
+    border-radius: 0.375rem; /* 6px */
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+}
+.segment-button.active {
+    background-color: #ffffff;
+    color: #1d1d1f;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+ .tab-panel-content {
+    display: none; /* Hidden by default */
+    padding-top: 1rem;
+}
+.tab-panel-content.active {
+    display: block; /* Shown when active */
+}
+
+/* Ensure Tailwind utility classes are available */
+/* Note: If not using Tailwind, these styles would need to be defined manually */
+
