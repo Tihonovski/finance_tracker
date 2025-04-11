@@ -1,157 +1,20 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ניהול תקציב אישי</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>התנהלות פיננסית</title>
+  <!-- קישור לקובץ הסגנונות -->
+  <link rel="stylesheet" href="style.css">
+  <!-- ספריית Chart.js לצורך הגרף -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="p-4 pb-20 md:p-6"> <div class="max-w-3xl mx-auto space-y-6">
+<body>
+  <div id="app">
+    <!-- התוכן נטען דינאמית באמצעות script.js -->
+  </div>
 
-        <header class="flex justify-between items-center pt-2">
-            <h1 class="text-2xl md:text-3xl font-bold">התנהלות פיננסית</h1>
-            <button id="open-modal-button-header" class="primary-button p-2 h-9 w-9 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                </svg>
-            </button>
-        </header>
-
-        <section class="card p-4 grid grid-cols-3 gap-4 text-center">
-            <div>
-                <div class="text-xs text-gray-600 mb-1">יתרה נוכחית</div>
-                <div id="summary-balance" class="text-lg font-semibold text-blue-600">₪ 0.00</div>
-            </div>
-            <div>
-                <div class="text-xs text-gray-600 mb-1">הכנסות (החודש)</div>
-                <div id="summary-income" class="text-lg font-semibold text-green-600">₪ 0.00</div>
-            </div>
-             <div>
-                <div class="text-xs text-gray-600 mb-1">הוצאות (החודש)</div>
-                <div id="summary-expenses" class="text-lg font-semibold text-red-600">₪ 0.00</div>
-            </div>
-        </section>
-
-        <section>
-            <div class="segmented-control" id="main-tabs">
-                <button class="segment-button active" data-tab="transactions">תנועות</button>
-                <button class="segment-button" data-tab="budgets">תקציבים</button>
-                <button class="segment-button" data-tab="recurring">קבועים</button>
-                <button class="segment-button" data-tab="settings">הגדרות</button>
-            </div>
-
-            <div id="tab-panels-container" class="mt-4">
-                <div id="tab-transactions-panel" class="tab-panel-content active card">
-                    <div id="transactions-list">
-                        <div id="empty-list-message" class="p-6 text-center text-gray-500" style="display: none;">
-                            אין תנועות להצגה. לחץ על '+' למעלה להוספה.
-                        </div>
-                        </div>
-                </div>
-
-                <div id="tab-budgets-panel" class="tab-panel-content">
-                     <div class="card p-6 text-center text-gray-500">
-                        מעקב תקציבים יופיע כאן בהמשך.
-                    </div>
-                </div>
-
-                <div id="tab-recurring-panel" class="tab-panel-content">
-                     <div class="card p-6 text-center text-gray-500">
-                        מעקב תשלומים קבועים יופיע כאן בהמשך.
-                    </div>
-                </div>
-
-                 <div id="tab-settings-panel" class="tab-panel-content">
-                     <div class="card p-6 text-center text-gray-500 space-y-4">
-                         <p>ניהול חשבונות בנק וכרטיסי אשראי יופיע כאן בהמשך.</p>
-                         <p class="text-xs">(כרגע, החשבונות והכרטיסים מוגדרים כברירת מחדל בקוד)</p>
-                    </div>
-                 </div>
-
-            </div>
-        </section>
-
-    </div> <div id="add-transaction-modal" class="modal">
-        <div class="modal-content">
-            <button id="modal-close-button" class="modal-close-button">&times;</button>
-            <h2 id="modal-title" class="text-xl font-semibold mb-6 text-center">הוספת תנועה חדשה</h2>
-            <form id="transaction-form" class="space-y-4">
-                 <input type="hidden" id="transaction-id" name="transactionId">
-
-                <div>
-                     <label class="form-label">סוג תנועה</label>
-                     <div class="flex gap-3">
-                         <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-lg flex-1 cursor-pointer has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
-                            <input type="radio" name="transactionType" value="expense" class="form-radio text-blue-600 focus:ring-blue-500" checked>
-                            <span>הוצאה</span>
-                         </label>
-                         <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-lg flex-1 cursor-pointer has-[:checked]:border-green-500 has-[:checked]:bg-green-50">
-                            <input type="radio" name="transactionType" value="income" class="form-radio text-green-600 focus:ring-green-500">
-                            <span>הכנסה</span>
-                        </label>
-                     </div>
-                 </div>
-
-                 <div>
-                    <label for="bankAccount" class="form-label">חשבון בנק</label>
-                    <select id="bankAccount" name="bankAccount" class="form-select" required>
-                        <option value="" disabled selected>בחר חשבון...</option>
-                        </select>
-                </div>
-
-                 <div>
-                    <label for="paymentMethod" class="form-label">אמצעי תשלום</label>
-                    <select id="paymentMethod" name="paymentMethod" class="form-select" required disabled>
-                        <option value="" disabled selected>בחר קודם חשבון בנק...</option>
-                        </select>
-                </div>
-
-                <div>
-                    <label for="amount" class="form-label">סכום (₪)</label>
-                    <input type="number" id="amount" name="amount" class="form-input text-left" placeholder="0.00" step="0.01" required dir="ltr">
-                </div>
-
-                <div>
-                    <label for="description" class="form-label">תיאור</label>
-                    <input type="text" id="description" name="description" class="form-input" placeholder="לדוגמה: קניות בסופר, משכורת" required>
-                </div>
-
-                <div>
-                    <label for="category" class="form-label">קטגוריה</label>
-                    <select id="category" name="category" class="form-select" required>
-                        <option value="" disabled selected>בחר קטגוריה...</option>
-                        <option value="מזון">מזון</option>
-                        <option value="דיור">דיור</option>
-                        <option value="תחבורה">תחבורה</option>
-                        <option value="בילויים">בילויים</option>
-                        <option value="בריאות">בריאות</option>
-                        <option value="ביגוד והנעלה">ביגוד והנעלה</option>
-                        <option value="חשבונות ומנויים">חשבונות ומנויים</option>
-                        <option value="מתנות ותרומות">מתנות ותרומות</option>
-                        <option value="חינוך">חינוך</option>
-                        <option value="משכורת">משכורת (הכנסה)</option>
-                        <option value="הכנסה נוספת">הכנסה נוספת</option>
-                        <option value="אחר">אחר</option>
-                    </select>
-                </div>
-
-                 <div>
-                    <label for="date" class="form-label">תאריך</label>
-                    <input type="date" id="date" name="date" class="form-input" required>
-                </div>
-
-                <div class="pt-4">
-                    <button type="submit" id="modal-submit-button" class="primary-button w-full">
-                        שמור תנועה
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script src="script.js" defer></script>
-
+  <!-- קובץ הסקריפט שמנהל את האפליקציה -->
+  <script src="script.js"></script>
 </body>
 </html>
