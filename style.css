@@ -1,264 +1,197 @@
-/* Apply Inter font globally */
+/* עיצוב בסיסי לכלל הדף */
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f8f8f8; /* Light gray background, common in iOS apps */
-    color: #1d1d1f; /* Apple's typical dark text color */
-    overscroll-behavior-y: none; /* Prevent pull-to-refresh issues on mobile */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  margin: 0;
+  direction: rtl;
 }
 
-/* --- Apple Style Adjustments --- */
+/* קונטיינר ראשי */
+#app {
+  display: flex;
+  flex-direction: row-reverse;
+  min-height: 100vh;
+}
 
-/* Cards/Sections */
+/* תפריט צדדי (Sidebar) */
+aside {
+  width: 260px;
+  background: #ffffff;
+  padding: 1rem;
+  border-left: 1px solid #e2e8f0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+aside h1 {
+  text-align: center;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* כפתורים בתפריט הצד */
+.sidebar-btn {
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  text-align: right;
+  transition: 0.3s;
+}
+.sidebar-btn:hover {
+  background-color: #f3f4f6;
+}
+.sidebar-btn.back {
+  background-color: #e0f2fe;
+  color: #0284c7;
+  border-color: #0284c7;
+}
+
+/* תוכן עיקרי */
+main {
+  flex-grow: 1;
+  padding: 1.5rem;
+}
+
+/* רשת הקוביות (כרטיסים) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* כרטיס בודד */
 .card {
-    background-color: #ffffff;
-    border-radius: 0.75rem; /* 12px */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    overflow: hidden; /* Ensure content respects border radius */
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  background-color: #fff;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
 }
 
-/* Buttons */
-.primary-button {
-    background-color: #007aff; /* Apple blue */
-    color: white;
-    padding: 0.625rem 1.25rem; /* 10px 20px */
-    border-radius: 0.5rem; /* 8px */
-    font-weight: 600;
-    font-size: 0.9375rem; /* 15px */
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.15s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-}
-.primary-button:hover, .primary-button:focus {
-    background-color: #005ecb; /* Darker blue */
-}
-.primary-button:disabled {
-    background-color: #d1d1d6; /* Disabled gray */
-    cursor: not-allowed;
-}
-.secondary-button {
-    background-color: #e5e5ea; /* Light gray */
-    color: #007aff; /* Blue text */
-     padding: 0.625rem 1.25rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    font-size: 0.9375rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.15s ease;
-}
- .secondary-button:hover, .secondary-button:focus {
-    background-color: #dcdce0;
+.card h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
 }
 
-/* Small action buttons (Edit/Delete) */
-.action-link-button {
-    background: none;
-    border: none;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem; /* text-xs */
-    font-weight: 500;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    transition: background-color 0.15s ease, color 0.15s ease;
-}
-.action-link-button.edit {
-    color: #007aff; /* Blue */
-}
-.action-link-button.edit:hover {
-    background-color: rgba(0, 122, 255, 0.1);
-}
-.action-link-button.delete {
-    color: #ff3b30; /* Red */
-}
-.action-link-button.delete:hover {
-     background-color: rgba(255, 59, 48, 0.1);
+.card .amount {
+  font-size: 1.75rem;
+  font-weight: bold;
 }
 
-
-/* Forms */
-.form-input, .form-select {
-    width: 100%;
-    padding: 0.75rem 1rem; /* 12px 16px */
-    border: 1px solid #d1d1d6; /* Border gray */
-    border-radius: 0.5rem; /* 8px */
-    background-color: #f2f2f7; /* Input background */
-    font-size: 1rem; /* 16px */
-    color: #1d1d1f;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-.form-input:focus, .form-select:focus {
-    outline: none;
-    border-color: #007aff; /* Blue border on focus */
-    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
-}
-/* Style disabled select */
-.form-select:disabled {
-    background-color: #e9e9ed; /* Slightly different gray for disabled */
-    cursor: not-allowed;
-    color: #8e8e93;
-}
-.form-label {
-    display: block;
-    font-size: 0.8125rem; /* 13px */
-    font-weight: 500;
-    color: #636366; /* Gray label text */
-    margin-bottom: 0.375rem; /* 6px */
+/* טבלה */
+.table-wrapper {
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  background-color: #fff;
+  overflow-x: auto;
+  margin-bottom: 2rem;
 }
 
-/* Modal Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  direction: rtl;
+}
+
+thead {
+  background-color: #f1f5f9;
+}
+
+th, td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+th {
+  font-weight: 600;
+}
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* טקסטים בצבע */
+.text-red {
+  color: #ef4444;
+}
+.text-green {
+  color: #22c55e;
+}
+.text-blue {
+  color: #3b82f6;
+}
+
+/* חלונית מודאלית */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4); /* Dim background */
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
+
 .modal-content {
-    background-color: #ffffff;
-    margin: auto;
-    padding: 1.5rem; /* 24px */
-    border-radius: 0.875rem; /* 14px */
-    max-width: 450px; /* Limit width */
-    width: 90%;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    position: relative;
-}
-.modal-close-button {
-    position: absolute;
-    top: 0.75rem; /* 12px */
-    left: 0.75rem; /* Align to the left for RTL */
-    background: #e5e5ea;
-    color: #8e8e93;
-    border: none;
-    border-radius: 50%;
-    width: 1.75rem; /* 28px */
-    height: 1.75rem; /* 28px */
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-}
-.modal-close-button:hover {
-    background-color: #dcdce0;
-    color: #636366;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Transaction List Item */
-.transaction-item {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1rem; /* 12px 16px */
-    border-bottom: 1px solid #e5e5ea; /* Separator */
-}
- .transaction-item:last-child {
-    border-bottom: none;
-}
-.transaction-icon {
-    width: 2.5rem; /* 40px */
-    height: 2.5rem; /* 40px */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 1rem; /* me-4 */
-    flex-shrink: 0;
-}
-.transaction-icon svg {
-    width: 1.25rem; /* 20px */
-    height: 1.25rem; /* 20px */
-    color: white;
-}
-.transaction-details {
-    flex-grow: 1;
-    /* Allow details to shrink if needed */
-    min-width: 0;
-    margin-left: 0.5rem; /* Add some space before amount */
-}
-.transaction-description {
-    font-weight: 500;
-    color: #1d1d1f;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis if description is too long */
-}
-.transaction-category { font-size: 0.8125rem; color: #8e8e93; } /* Secondary text color */
-.transaction-amount-section {
-    display: flex;
-    flex-direction: column; /* Stack type and amount */
-    align-items: flex-end; /* Align to the right */
-    text-align: right;
-    white-space: nowrap;
-    margin-left: 0.75rem; /* Space before action buttons */
-}
-.transaction-type-label {
-    font-size: 0.6875rem; /* 11px */
-    color: #8e8e93;
-    line-height: 1.2;
-}
-.transaction-amount {
-    font-weight: 500;
-    line-height: 1.3;
-}
-.transaction-amount.income { color: #34c759; } /* Apple Green */
-.transaction-amount.expense { color: #ff3b30; } /* Apple Red */
-
-.transaction-actions {
-    display: flex;
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: flex-end;
-    gap: 0.125rem; /* Small gap between buttons */
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
 }
 
-
-/* Segmented Control / Tabs */
-.segmented-control {
-    display: flex;
-    background-color: #e5e5ea; /* Gray background */
-    border-radius: 0.5rem; /* 8px */
-    padding: 2px;
-    overflow: hidden;
-}
-.segment-button {
-    flex: 1;
-    padding: 0.5rem 0.5rem; /* 8px */
-    border: none;
-    background-color: transparent;
-    color: #1d1d1f;
-    font-size: 0.8125rem; /* 13px */
-    font-weight: 600;
-    border-radius: 0.375rem; /* 6px */
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-    text-align: center;
-    white-space: nowrap; /* Prevent wrapping on small screens */
-}
-.segment-button.active {
-    background-color: #ffffff;
-    color: #1d1d1f;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
- .tab-panel-content {
-    display: none; /* Hidden by default */
-    padding-top: 1rem;
-}
-.tab-panel-content.active {
-    display: block; /* Shown when active */
+.modal-content select,
+.modal-content input,
+.modal-content button {
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
 }
 
-/* Ensure Tailwind utility classes are available */
-/* Note: If not using Tailwind, these styles would need to be defined manually */
+.modal-content button.save {
+  background-color: #2563eb;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.modal-content button.save:hover {
+  background-color: #1e40af;
+}
+.modal-content button.cancel {
+  background-color: #f3f4f6;
+  border: none;
+  cursor: pointer;
+}
 
+/* עמוד הגדרות */
+.settings-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+.settings-table {
+  margin-bottom: 2rem;
+}
+.settings-table table {
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #fff;
+}
